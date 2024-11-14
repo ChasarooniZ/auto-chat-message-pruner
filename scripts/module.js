@@ -13,11 +13,10 @@ Hooks.once('ready', async function() {
     if (!game.user.isGM) return;
     Hooks.on('preCreateChatMessage', async (_document, _data, _options, _userId) => {
         const maxMessages = game.settings.get("depruner-chat-message-remover", "limit");
-        const messages = game.messages.contents;
-        const messagesToDelete = messages.length - maxMessages;
+        const messagesToDelete = game.messages.contents.length - maxMessages;
         if (messagesToDelete <= 0) return;
         for (let i = 0; i <= messagesToDelete; i++) {
-            const oldestMessage = messages[i];
+            const oldestMessage = game.messages.contents[i];
             if (oldestMessage) {
                 await oldestMessage?.delete();
             }
