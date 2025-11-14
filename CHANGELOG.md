@@ -1,3 +1,6 @@
+## 2.0.2
+- Actually merged the fix (@JaseHadd)
+
 ## 2.0.1
 - Fixed issue with deleting multiple messages (@JaseHadd)
 
