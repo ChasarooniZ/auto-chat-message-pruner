@@ -22,14 +22,17 @@ Hooks.once("ready", async function () {
         "depruner-chat-message-remover",
         "limit"
       );
-      const messagesToDelete = game.messages.contents.length - maxMessages;
-      if (messagesToDelete <= 0) return;
-      for (let i = 0; i <= messagesToDelete; i++) {
-        const oldestMessage = game.messages.contents[i];
-        if (oldestMessage) {
-          await oldestMessage?.delete();
-        }
-      }
+      
+      const deleteCount = game.messages.contents.length - maxMessages;
+      if (deleteCount <= 0) return;
+
+      const messagesToDelete = [...game.messages.contents.slice(0, deleteCount)];
+      
+      await Promise.all(
+        messagesToDelete.map((message) => {
+          return message.delete();
+        })
+      );
     }
   );
 });
