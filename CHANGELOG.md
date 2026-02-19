@@ -1,10 +1,17 @@
+## 2.0.3
+
+- Handle errors when deleting multiple messages
+
 ## 2.0.2
+
 - Actually merged the fix (@JaseHadd)
 
 ## 2.0.1
+
 - Fixed issue with deleting multiple messages (@JaseHadd)
 
 ## 2.0.0
+
 - Fvtt `v13` compatability
 
 ## 1.0.6

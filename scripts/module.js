@@ -1,10 +1,10 @@
 Hooks.once("init", async function () {
   game.settings.register("depruner-chat-message-remover", "limit", {
     name: game.i18n.localize(
-      "depruner-chat-message-remover.module-settings.limit.name"
+      "depruner-chat-message-remover.module-settings.limit.name",
     ),
     hint: game.i18n.localize(
-      "depruner-chat-message-remover.module-settings.limit.hint"
+      "depruner-chat-message-remover.module-settings.limit.hint",
     ),
     scope: "world",
     config: true,
@@ -20,19 +20,23 @@ Hooks.once("ready", async function () {
     async (_document, _data, _options, _userId) => {
       const maxMessages = game.settings.get(
         "depruner-chat-message-remover",
-        "limit"
+        "limit",
       );
-      
+
       const deleteCount = game.messages.contents.length - maxMessages;
       if (deleteCount <= 0) return;
 
-      const messagesToDelete = [...game.messages.contents.slice(0, deleteCount)];
-      
+      const messagesToDelete = [
+        ...game.messages.contents.slice(0, deleteCount),
+      ];
+
       await Promise.all(
         messagesToDelete.map((message) => {
-          return message.delete();
-        })
+          if (message) {
+            return message?.delete();
+          }
+        }),
       );
-    }
+    },
   );
 });
