@@ -1,6 +1,7 @@
 ## 2.0.3
 
 - Handle errors when deleting multiple messages
+- Also made it async so that it doesn't stall the main to complete the delete
 
 ## 2.0.2
 

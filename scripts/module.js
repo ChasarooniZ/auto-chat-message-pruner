@@ -30,13 +30,11 @@ Hooks.once("ready", async function () {
         ...game.messages.contents.slice(0, deleteCount),
       ];
 
-      await Promise.all(
-        messagesToDelete.map((message) => {
-          if (message) {
-            return message?.delete();
-          }
-        }),
-      );
+      messagesToDelete.forEach((message) => {
+        if (message) {
+          return message?.delete();
+        }
+      });
     },
   );
 });
